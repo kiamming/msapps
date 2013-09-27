@@ -94,8 +94,8 @@ define(['app', 'jquery'], function (app, $) {
                                              showOptions: null,
                                              duration: 'fast'})
                           .removeAttr('readonly')
-                          .on('focus', function() {
-                            $(this).blur();
+                          .focus(function(e) {
+                            e.preventDefault();
                           });
                 resetAll();
                 //FastClick.attach(document.body);
