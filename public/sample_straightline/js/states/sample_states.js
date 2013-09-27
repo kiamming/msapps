@@ -59,13 +59,7 @@ angular.module('myApp')
                         templateUrl: '../partials/visualizeGradientIntercept.html',
                         controller: ['$scope', '$state',
                             function (  $scope,   $state) {
-
                                 $scope.behavior = 'override';
-                               /* $scope.$on('$viewContentLoaded', function () {
-
-
-                                    FastClick.attach(document.body);
-                                });*/
                             }]
                     },
 

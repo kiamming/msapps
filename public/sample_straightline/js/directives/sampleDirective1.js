@@ -88,10 +88,12 @@ define(['app', 'jquery'], function (app, $) {
                     resizeGraph();
                     replot();
                 });*/
-                $(':text').keypad({showOn: 'button'})
-                    .keypad('change', {showAnim: 'fadeIn',
-                        showOptions: null,
-                        duration: 'fast'});
+                $(':text').keypad({showOn: 'button',
+                                   buttonImageOnly: true,
+                                   buttonImage: '../img/keypad.png'})
+                          .keypad('change', {showAnim: 'fadeIn',
+                                             showOptions: null,
+                                             duration: 'fast'});
                 resetAll();
                 ////// End of initialization code///////
 
