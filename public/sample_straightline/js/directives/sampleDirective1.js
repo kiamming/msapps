@@ -26,6 +26,8 @@ define(['app', 'jquery'], function (app, $) {
 
                 var currentGradInput = $('#currentGrad');
                 var currentIntInput = $('#currentInt');
+                var currentGrad = parseFloat(currentGradInput.val());
+                var currentInt = parseFloat(currentIntInput.val());
 
                 placeholder = $('#placeholder');
 
@@ -79,15 +81,8 @@ define(['app', 'jquery'], function (app, $) {
                 $('#decreaseInt').on('click', decreaseInt);
                 $('#increaseInt').on('click', increaseInt);
                 $('#resetAll').on('click', resetAll);
-                currentGradInput.on('change', replot);
-                currentIntInput.on('change', replot);
+                $('.redrawBtns').on('click', replot);
 
-                /*resizeGraph();
-
-                $(window).bind("resize", function () {
-                    resizeGraph();
-                    replot();
-                });*/
                 $(':text').keypad({showOn: 'button',
                                    buttonImageOnly: true,
                                    buttonImage: '../img/keypad.png'})
@@ -101,8 +96,7 @@ define(['app', 'jquery'], function (app, $) {
 
                 function replot() {
                     var thisGraph = [];
-                    var currentGrad = parseFloat(currentGradInput.val());
-                    var currentInt = parseFloat(currentIntInput.val());
+                    ensureValidInputs();
 
                     thisGraph.push([xyMin, currentGrad*xyMin+currentInt]);
                     thisGraph.push([xyMax, currentGrad*xyMax+currentInt]);
@@ -138,6 +132,7 @@ define(['app', 'jquery'], function (app, $) {
                 }
 
                 function decreaseGrad() {
+                    ensureValidInputs();
                     var temp = parseFloat(currentGradInput.val());
                     temp -= STEP;
                     currentGradInput.val(roundNumber(temp, 2));
@@ -145,6 +140,7 @@ define(['app', 'jquery'], function (app, $) {
                 }
 
                 function increaseGrad() {
+                    ensureValidInputs();
                     var temp = parseFloat(currentGradInput.val());
                     temp += STEP;
                     currentGradInput.val(roundNumber(temp, 2));
@@ -152,6 +148,7 @@ define(['app', 'jquery'], function (app, $) {
                 }
 
                 function decreaseInt() {
+                    ensureValidInputs();
                     var temp = parseFloat(currentIntInput.val());
                     temp -= 5*STEP;
                     currentIntInput.val(roundNumber(temp, 2));
@@ -159,10 +156,32 @@ define(['app', 'jquery'], function (app, $) {
                 }
 
                 function increaseInt() {
+                    ensureValidInputs();
                     var temp = parseFloat(currentIntInput.val());
                     temp += 5*STEP;
                     currentIntInput.val(roundNumber(temp, 2));
                     replot();
+                }
+
+                function ensureValidInputs() {
+                    var tempGrad = parseFloat(currentGradInput.val());
+                    var tempInt = parseFloat(currentIntInput.val());
+
+                    if(isNaN(tempGrad)) {
+                        tempGrad = currentGrad;
+                        currentGradInput.val(currentGrad);
+                    }
+                    else{
+                        currentGrad = tempGrad;
+                    }
+
+                    if(isNaN(tempInt)) {
+                        tempInt = currentInt;
+                        currentIntInput.val(currentInt);
+                    }
+                    else{
+                        currentInt = tempInt;
+                    }
                 }
 
                 function resetAll() {
