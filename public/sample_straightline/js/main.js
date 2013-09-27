@@ -27,7 +27,7 @@ require.config({
             deps: ['angular']
         },*/
         sample_states: {
-            deps: ['angular']
+            deps: ['angular', 'app']
         },
         flotJS: {
             deps: ['jquery']
