@@ -93,7 +93,7 @@ define(['app', 'jquery'], function (app, $) {
                           .keypad('change', {showAnim: 'fadeIn',
                                              showOptions: null,
                                              duration: 'fast'});
-
+                FastClick.attach(document.body);
                 resetAll();
 
                 ////// End of initialization code///////
