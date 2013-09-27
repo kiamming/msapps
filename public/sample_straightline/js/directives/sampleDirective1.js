@@ -92,12 +92,7 @@ define(['app', 'jquery'], function (app, $) {
                 $(':text').keypad({showOn: 'focus'})
                           .keypad('change', {showAnim: 'fadeIn',
                                              showOptions: null,
-                                             duration: 'fast'})
-                          .removeAttr('readonly')
-                          .on('click focus', function(e){
-                            e.stopImmediatePropagation();
-                            e.preventDefault();
-                          });
+                                             duration: 'fast'});
                 resetAll();
                 //FastClick.attach(document.body);
                 ////// End of initialization code///////
