@@ -109,12 +109,8 @@ define(['app', 'jquery'], function (app, $) {
                     thisGraph.push([xyMin, currentGrad*xyMin+currentInt]);
                     thisGraph.push([xyMax, currentGrad*xyMax+currentInt]);
 
-                    console.log("in replot");
-                    console.log(OVERRIDEPREVIOUS);
-                    if(OVERRIDEPREVIOUS == 1) {
+                    if(OVERRIDEPREVIOUS == 1)
                         graphs = [[]];
-                        console.log("overriding...");
-                    }
 
                     graphs.push({data: thisGraph, color: colorPalette[0]});
                     var current_flot_options = $.extend(true, {}, flot_options);
@@ -138,8 +134,6 @@ define(['app', 'jquery'], function (app, $) {
                     for(var i = 0; i < viewRadioButtons.length; i++) {
                         if(viewRadioButtons.eq(i).hasClass('active')) {
                             OVERRIDEPREVIOUS = viewRadioButtons.eq(i).val();
-                            console.log("In changeView");
-                            console.log(OVERRIDEPREVIOUS);
                             break;
                         }
                     }
