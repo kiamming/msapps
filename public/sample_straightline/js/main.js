@@ -41,16 +41,20 @@ require.config({
 
 require(['angular',
          'fastclick',
+         'jquery',
          'angular_ui_router',
          'angular_ui_bootstrap',
-         'jquery',
          'app',
          //'sample_factory',
          'sample_states',
          'sample_directive',
          'flotJS',
          'jquery_keypad'],
-         function (angular, fastclick) {
+         function (angular, fastclick, $) {
     angular.bootstrap(document, ['myApp']);
     fastclick.attach(document.body);
+    $(':text').keypad({showOn: 'focus'})
+              .keypad('change', {showAnim: 'fadeIn',
+                     showOptions: null,
+                     duration: 'fast'});
 });

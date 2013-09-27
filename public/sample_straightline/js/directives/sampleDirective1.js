@@ -89,10 +89,6 @@ define(['app', 'jquery'], function (app, $) {
                     replot();
                 });*/
 
-                $(':text').keypad({showOn: 'focus'})
-                          .keypad('change', {showAnim: 'fadeIn',
-                                             showOptions: null,
-                                             duration: 'fast'});
                 resetAll();
                 //FastClick.attach(document.body);
                 ////// End of initialization code///////
