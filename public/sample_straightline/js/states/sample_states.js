@@ -63,10 +63,11 @@ angular.module('myApp')
                                 $scope.behavior = 'override';
                                 $scope.$on('$viewContentLoaded', function () {
                                     $(':text').keypad({showOn: 'focus'})
-                                        .keypad('change', {showAnim: 'fadeIn',
-                                            showOptions: null,
-                                            duration: 'fast'});
-                                    //FastClick.attach(document.body);
+                                              .keypad('change', {showAnim: 'fadeIn',
+                                                                 showOptions: null,
+                                                                 duration: 'fast'});
+                                    console.log($(':text').length);
+                                    FastClick.attach(document.body);
                                 });
                             }]
                     },
