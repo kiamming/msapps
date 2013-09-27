@@ -19,12 +19,6 @@ define(['app', 'jquery'], function (app, $) {
                 var xyMin = -5;
                 var xyMax = 5;
 
-                var mul = 0.005;
-                var offset = 0.1;
-
-                var step = 0.1;
-                var REPEAT = 250; // repeat the functions called when the mouse is held down by REPEAT ms.
-
                 var OVERRIDEPREVIOUS = 1; // 1: each new graph to override the previous; 0: old graphs are not erased
                 var STEP = 0.1; // Increase/decrease gradient by this amount. Intercept is increased/decreased via a constant multiplier.
                 var INITIALGRAD = 0;
@@ -58,7 +52,7 @@ define(['app', 'jquery'], function (app, $) {
                         backgroundColor: { colors: ["#fff", "#eee"] },
                         markings: [
                             { xaxis: { from: 0, to: 0 }, color: "#000" },
-                            { yaxis: { from: 0, to: 0 }, color: "#000" },
+                            { yaxis: { from: 0, to: 0 }, color: "#000" }
                         ]
                     }
                 };
@@ -94,6 +88,11 @@ define(['app', 'jquery'], function (app, $) {
                     resizeGraph();
                     replot();
                 });*/
+
+                $(':text').keypad({showOn: 'focus'})
+                          .keypad('change', {showAnim: 'fadeIn',
+                                             showOptions: null,
+                                             duration: 'fast'});
 
                 resetAll();
 
@@ -178,8 +177,7 @@ define(['app', 'jquery'], function (app, $) {
                  * roundNumber(num, dec) rounds a number to a maximum of 2 decimal places
                  */
                 function roundNumber(num, dec) {
-                    var result = Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
-                    return result;
+                    return Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
                 }
             }
         };
