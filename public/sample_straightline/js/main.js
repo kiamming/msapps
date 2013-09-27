@@ -52,5 +52,5 @@ require(['angular',
          'jquery_keypad'],
          function (angular, fastclick) {
     angular.bootstrap(document, ['myApp']);
-    //fastclick.attach(document.body);
+    fastclick.attach(document.body);
 });
