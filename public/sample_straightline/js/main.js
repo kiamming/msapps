@@ -9,7 +9,7 @@ require.config({
         jquery: '../bower_components/jquery/jquery-1.8.3.min',
         flotJS: '../bower_components/flotFiles/jquery.flot',
         fastclick: '../bower_components/fastclick/fastclick',
-        sample_factory: 'services/sample_factory',
+        //sample_factory: 'services/sample_factory',
         sample_states: 'states/sample_states',
         sample_directive: 'directives/sampleDirective1'
     },
@@ -23,9 +23,9 @@ require.config({
         angular_ui_bootstrap: {
             deps: ['angular']
         },
-        sample_factory: {
+        /*sample_factory: {
             deps: ['angular']
-        },
+        },*/
         sample_states: {
             deps: ['angular']
         },
@@ -41,7 +41,7 @@ require(['angular',
          'angular_ui_bootstrap',
          'jquery',
          'app',
-         'sample_factory',
+         //'sample_factory',
          'sample_states',
          'sample_directive',
          'flotJS'],
