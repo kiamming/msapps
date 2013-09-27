@@ -61,6 +61,12 @@ angular.module('myApp')
                             function (  $scope,   $state) {
 
                                 $scope.behavior = 'override';
+                                $scope.$on('$viewContentLoaded', function () {
+                                    $(':text').keypad({showOn: 'focus'})
+                                        .keypad('change', {showAnim: 'fadeIn',
+                                            showOptions: null,
+                                            duration: 'fast'})
+                                });
                             }]
                     },
 

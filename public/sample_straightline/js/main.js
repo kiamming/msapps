@@ -39,9 +39,9 @@ require.config({
     }
 });
 
-require(['angular',
-         //'fastclick',
-         'jquery',
+require(['jquery',
+         'angular',
+         'fastclick',
          'angular_ui_router',
          'angular_ui_bootstrap',
          'app',
@@ -50,7 +50,7 @@ require(['angular',
          'sample_directive',
          'flotJS',
          'jquery_keypad'],
-         function (angular, fastclick) {
+         function ($, angular, fastclick) {
     angular.bootstrap(document, ['myApp']);
-    //fastclick.attach(document.body);
+    fastclick.attach(document.body);
 });
