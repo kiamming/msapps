@@ -1,0 +1,30 @@
+#placeholder .quadGraphs_zoomicons {
+	position: absolute;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;	
+}
+
+#placeholder .quadGraphs_defaultbtncss {
+	position: absolute;
+	cursor: pointer;
+	width: 60px;
+	height: 35px;	
+}
+
+#placeholder .quadGraphs_button {
+	position: absolute;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	background-color:#CCCCCC;
+	color: black;
+	padding: 2px;
+	width: 55px;
+	height: 30px;
+}
+
+.message {
+	padding-left: 50px;
+	font-size: smaller;
+}

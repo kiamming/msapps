@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<!--
+  - Author: Mr. Jason Chui
+  - Institution: Singapore Polytechnic
+  - School: School of Maths and Science
+  - Date of last update: 17th July 2012
+  -->
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<script language="javascript" type="text/javascript"  src="jquery-1.8.3.min.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript"  src="flotFiles/jquery.flot.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript"  src="flotFiles/jquery.flot.navigate.js"></script>
+<script language="javascript" type="text/javascript"  src="mousehold.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript"  src="jquery.touchhold.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript"  src="quadGraphs-specificFtns-keypad-panZoom.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript"  src="jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="jquery.keypad.mod.js"></script>
+<link type="text/css" href="jquery.keypad.css" rel="stylesheet">
+<link href="jquery-ui-1.10.2.custom/css/smoothness/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css"/>
+<link href="quadGraphs_base-css.css" rel="stylesheet" type="text/css"/>
+<link href="quadGraphs-panZoom-css.css" rel="stylesheet" type="text/css"/>
+<title>Quadratic Graphs - Different Forms</title>
+</head>
+<body>
+<div id="mainContainer" >
+<div id="header">
+<h1 style="margin-bottom:0;">Quadratic Graphs - Different Forms</h1></div>
+<br/>
+<div id="placeholder" style="height:540px;width:540px;float:left;">
+</div>
+<div style="float:left; padding: 10px;"></div>
+<div id="io">
+<!-------------- Graph 1 -------------------->
+<div id="exp1">
+  <ul>
+    <li><a href="#tabs-gen-1">General</a></li>
+    <li><a href="#tabs-fac-1">Factorized</a></li>
+	<li><a href="#tabs-ver-1">Vertex</a></li>
+  </ul>
+  <div id="tabs-gen-1">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<td class="graph1"><sup></sup><i>y</i><sub>1</sub></td>
+				<td>=<sup></sup></td>
+				<td><input type="text" class="graph1 general userInputs constant1" /><sup></sup></td>
+				<td><i>x</i><sup>2</sup></td>
+				<td>+<sup></sup></td>
+				<td><input type="text" class="graph1 general userInputs constant2" /><sup></sup></td>
+				<td><i>x</i><sup></sup></td>
+				<td>+<sup></sup></td>
+				<td><input type="text" class="graph1 general userInputs constant3" /><sup></sup></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 general discreteChange constant1" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 general discreteChange constant1" data-action="inc" />
+					<!-- <input type="button" value="-" class="graph1 general discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph1 general discreteChange constant1" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph1 general discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 general discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 general discreteChange constant2" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 general discreteChange constant2" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph1 general discreteChange constant2" data-action="dec" />-->
+					<!--<input type="button" value="+" class="graph1 general discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph1 general discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 general discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 general discreteChange constant3" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 general discreteChange constant3" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph1 general discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph1 general discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph1 general discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 general discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph1 general buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph1 general buttons clearButton" value="Clear"/>
+				</td>				
+			</tr>
+		</tbody>
+		</table>
+  </div>
+  <div id="tabs-fac-1">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<td class="graph1"><sup></sup><i>y</i><sub>1</sub></td>
+				<td>=<sup></sup></td>
+				<td><input type="text" class="graph1 factorized userInputs constant1" /><sup></sup></td>
+				<td>(<sup></sup></td>
+				<td><i>x</i> &#8210;<sup></sup></td>
+				<td><input type="text" class="graph1 factorized userInputs constant2" /><sup></sup></td>
+				<td>)(<sup></sup></td>
+				<td><i>x</i> &#8210;<sup></sup></td>
+				<td><input type="text" class="graph1 factorized userInputs constant3" /><sup></sup></td>
+				<td>)<sup></sup></td>				
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 factorized discreteChange constant1" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 factorized discreteChange constant1" data-action="inc" />				
+					<!-- <input type="button" value="-" class="graph1 factorized discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph1 factorized discreteChange constant1" data-action="inc" /> -->	
+					<!-- <img src="images/arrow-down.gif" class="graph1 factorized discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 factorized discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 factorized discreteChange constant2" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 factorized discreteChange constant2" data-action="inc" />									
+					<!--<input type="button" value="-" class="graph1 factorized discreteChange constant2" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph1 factorized discreteChange constant2" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph1 factorized discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 factorized discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 factorized discreteChange constant3" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 factorized discreteChange constant3" data-action="inc" />								
+					<!--<input type="button" value="-" class="graph1 factorized discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph1 factorized discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph1 factorized discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 factorized discreteChange constant3" data-action="inc"/> -->
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph1 factorized buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph1 factorized buttons clearButton" value="Clear"/>
+				</td>
+				<td></td>
+			</tr>
+		</tbody>
+		</table>
+  </div>
+  <div id="tabs-ver-1">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<tr>	
+					<td class="graph1"><sup></sup><i>y</i><sub>1</sub></td>
+					<td>=<sup></sup></td>
+					<td><input type="text" class="graph1 vertex userInputs constant1" /><sup></sup></td>
+					<td>(<sup></sup></td>
+					<td><i>x</i> &#8210;<sup></sup></td>
+					<td><input type="text" class="graph1 vertex userInputs constant2" /><sup></sup></td>
+					<td>)<sup>2</sup></td>
+					<td>+<sup></sup></td>
+					<td><input type="text" class="graph1 vertex userInputs constant3" /><sup></sup></td>					
+				</tr>				
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 vertex discreteChange constant1" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 vertex discreteChange constant1" data-action="inc" />								
+					<!--<input type="button" value="-" class="graph1 vertex discreteChange constant1" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph1 vertex discreteChange constant1" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph1 vertex discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 vertex discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 vertex discreteChange constant2" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 vertex discreteChange constant2" data-action="inc" />													
+					<!--<input type="button" value="-" class="graph1 vertex discreteChange constant2" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph1 vertex discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph1 vertex discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 vertex discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-red.png" class="graph1 vertex discreteChange constant3" data-action="dec" />
+					<img src="images/plus-red.png" class="graph1 vertex discreteChange constant3" data-action="inc" />												
+					<!--<input type="button" value="-" class="graph1 vertex discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph1 vertex discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph1 vertex discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph1 vertex discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph1 vertex buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph1 vertex buttons clearButton" value="Clear"/>
+				</td>				
+			</tr>
+		</tbody>
+		</table>
+  </div>
+</div>
+<br />
+<!-------------- Graph 2 -------------------->
+<div id="exp2">
+  <ul>
+    <li><a href="#tabs-gen-2">General</a></li>
+    <li><a href="#tabs-fac-2">Factorized</a></li>
+	<li><a href="#tabs-ver-2">Vertex</a></li>
+  </ul>
+  <div id="tabs-gen-2">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<td class="graph2"><sup></sup><i>y</i><sub>2</sub></td>
+				<td>=<sup></sup></td>
+				<td><input type="text" class="graph2 general userInputs constant1" /><sup></sup></td>
+				<td><i>x</i><sup>2</sup></td>
+				<td>+<sup></sup></td>
+				<td><input type="text" class="graph2 general userInputs constant2" /><sup></sup></td>
+				<td><i>x</i><sup></sup></td>
+				<td>+<sup></sup></td>
+				<td><input type="text" class="graph2 general userInputs constant3" /><sup></sup></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 general discreteChange constant1" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 general discreteChange constant1" data-action="inc" />
+					<!-- <input type="button" value="-" class="graph2 general discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph2 general discreteChange constant1" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph2 general discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 general discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 general discreteChange constant2" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 general discreteChange constant2" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph2 general discreteChange constant2" data-action="dec" />-->
+					<!--<input type="button" value="+" class="graph2 general discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph2 general discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 general discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 general discreteChange constant3" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 general discreteChange constant3" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph2 general discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph2 general discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph2 general discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 general discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph2 general buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph2 general buttons clearButton" value="Clear"/>
+				</td>				
+			</tr>
+		</tbody>
+		</table>
+  </div>
+  <div id="tabs-fac-2">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<td class="graph2"><sup></sup><i>y</i><sub>2</sub></td>
+				<td>=<sup></sup></td>
+				<td><input type="text" class="graph2 factorized userInputs constant1" /><sup></sup></td>
+				<td>(<sup></sup></td>
+				<td><i>x</i> &#8210;<sup></sup></td>
+				<td><input type="text" class="graph2 factorized userInputs constant2" /><sup></sup></td>
+				<td>)(<sup></sup></td>
+				<td><i>x</i> &#8210;<sup></sup></td>
+				<td><input type="text" class="graph2 factorized userInputs constant3" /><sup></sup></td>
+				<td>)<sup></sup></td>				
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 factorized discreteChange constant1" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 factorized discreteChange constant1" data-action="inc" />
+					<!-- <input type="button" value="-" class="graph2 factorized discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph2 factorized discreteChange constant1" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph2 factorized discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 factorized discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 factorized discreteChange constant2" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 factorized discreteChange constant2" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph2 factorized discreteChange constant2" data-action="dec" />-->
+					<!--<input type="button" value="+" class="graph2 factorized discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph2 factorized discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 factorized discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 factorized discreteChange constant3" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 factorized discreteChange constant3" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph2 factorized discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph2 factorized discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph2 factorized discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 factorized discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph2 factorized buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph2 factorized buttons clearButton" value="Clear"/>
+				</td>
+				<td></td>
+			</tr>
+		</tbody>
+		</table>
+  </div>
+  <div id="tabs-ver-2">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<tr>	
+					<td class="graph2"><sup></sup><i>y</i><sub>2</sub></td>
+					<td>=<sup></sup></td>
+					<td><input type="text" class="graph2 vertex userInputs constant1" /><sup></sup></td>
+					<td>(<sup></sup></td>
+					<td><i>x</i> &#8210;<sup></sup></td>
+					<td><input type="text" class="graph2 vertex userInputs constant2" /><sup></sup></td>
+					<td>)<sup>2</sup></td>
+					<td>+<sup></sup></td>
+					<td><input type="text" class="graph2 vertex userInputs constant3" /><sup></sup></td>					
+				</tr>				
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 vertex discreteChange constant1" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 vertex discreteChange constant1" data-action="inc" />
+					<!-- <input type="button" value="-" class="graph2 vertex discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph2 vertex discreteChange constant1" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph2 vertex discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 vertex discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 vertex discreteChange constant2" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 vertex discreteChange constant2" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph2 vertex discreteChange constant2" data-action="dec" />-->
+					<!--<input type="button" value="+" class="graph2 vertex discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph2 vertex discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 vertex discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-blue.png" class="graph2 vertex discreteChange constant3" data-action="dec" />
+					<img src="images/plus-blue.png" class="graph2 vertex discreteChange constant3" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph2 vertex discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph2 vertex discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph2 vertex discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph2 vertex discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph2 vertex buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph2 vertex buttons clearButton" value="Clear"/>
+				</td>				
+			</tr>
+		</tbody>
+		</table>
+  </div>
+</div>
+<br />
+<!-------------- Graph 3 -------------------->
+<div id="exp3">
+  <ul>
+    <li><a href="#tabs-gen-3">General</a></li>
+    <li><a href="#tabs-fac-3">Factorized</a></li>
+	<li><a href="#tabs-ver-3">Vertex</a></li>
+  </ul>
+  <div id="tabs-gen-3">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<td class="graph3"><sup></sup><i>y</i><sub>3</sub></td>
+				<td>=<sup></sup></td>
+				<td><input type="text" class="graph3 general userInputs constant1" /><sup></sup></td>
+				<td><i>x</i><sup>2</sup></td>
+				<td>+<sup></sup></td>
+				<td><input type="text" class="graph3 general userInputs constant2" /><sup></sup></td>
+				<td><i>x</i><sup></sup></td>
+				<td>+<sup></sup></td>
+				<td><input type="text" class="graph3 general userInputs constant3" /><sup></sup></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 general discreteChange constant1" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 general discreteChange constant1" data-action="inc" />
+					<!-- <input type="button" value="-" class="graph3 general discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph3 general discreteChange constant1" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph3 general discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 general discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 general discreteChange constant2" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 general discreteChange constant2" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph3 general discreteChange constant2" data-action="dec" />-->
+					<!--<input type="button" value="+" class="graph3 general discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph3 general discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 general discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 general discreteChange constant3" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 general discreteChange constant3" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph3 general discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph3 general discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph3 general discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 general discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph3 general buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph3 general buttons clearButton" value="Clear"/>
+				</td>				
+			</tr>
+		</tbody>
+		</table>
+  </div>
+  <div id="tabs-fac-3">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<td class="graph3"><sup></sup><i>y</i><sub>3</sub></td>
+				<td>=<sup></sup></td>
+				<td><input type="text" class="graph3 factorized userInputs constant1" /><sup></sup></td>
+				<td>(<sup></sup></td>
+				<td><i>x</i> &#8210;<sup></sup></td>
+				<td><input type="text" class="graph3 factorized userInputs constant2" /><sup></sup></td>
+				<td>)(<sup></sup></td>
+				<td><i>x</i> &#8210;<sup></sup></td>
+				<td><input type="text" class="graph3 factorized userInputs constant3" /><sup></sup></td>
+				<td>)<sup></sup></td>				
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 factorized discreteChange constant1" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 factorized discreteChange constant1" data-action="inc" />
+					<!-- <input type="button" value="-" class="graph3 factorized discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph3 factorized discreteChange constant1" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph3 factorized discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 factorized discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 factorized discreteChange constant2" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 factorized discreteChange constant2" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph3 factorized discreteChange constant2" data-action="dec" />-->
+					<!--<input type="button" value="+" class="graph3 factorized discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph3 factorized discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 factorized discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 factorized discreteChange constant3" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 factorized discreteChange constant3" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph3 factorized discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph3 factorized discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph3 factorized discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 factorized discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph3 factorized buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph3 factorized buttons clearButton" value="Clear"/>
+				</td>
+				<td></td>
+			</tr>
+		</tbody>
+		</table>
+  </div>
+  <div id="tabs-ver-3">
+		<table class="mathExpression centralizedBlock">
+		<tbody>
+			<tr>
+				<tr>	
+					<td class="graph3"><sup></sup><i>y</i><sub>3</sub></td>
+					<td>=<sup></sup></td>
+					<td><input type="text" class="graph3 vertex userInputs constant1" /><sup></sup></td>
+					<td>(<sup></sup></td>
+					<td><i>x</i> &#8210;<sup></sup></td>
+					<td><input type="text" class="graph3 vertex userInputs constant2" /><sup></sup></td>
+					<td>)<sup>2</sup></td>
+					<td>+<sup></sup></td>
+					<td><input type="text" class="graph3 vertex userInputs constant3" /><sup></sup></td>					
+				</tr>				
+			</tr>	
+			<tr>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 vertex discreteChange constant1" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 vertex discreteChange constant1" data-action="inc" />
+					<!-- <input type="button" value="-" class="graph3 vertex discreteChange constant1" data-action="dec" /> -->
+					<!-- <input type="button" value="+" class="graph3 vertex discreteChange constant1" data-action="inc" /> -->
+					<!-- <img src="images/arrow-down.gif" class="graph3 vertex discreteChange constant1" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 vertex discreteChange constant1" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 vertex discreteChange constant2" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 vertex discreteChange constant2" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph3 vertex discreteChange constant2" data-action="dec" />-->
+					<!--<input type="button" value="+" class="graph3 vertex discreteChange constant2" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph3 vertex discreteChange constant2" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 vertex discreteChange constant2" data-action="inc"/> -->
+				</td>
+				<td></td>
+				<td></td>
+				<td>
+					<img src="images/minus-green.png" class="graph3 vertex discreteChange constant3" data-action="dec" />
+					<img src="images/plus-green.png" class="graph3 vertex discreteChange constant3" data-action="inc" />				
+					<!--<input type="button" value="-" class="graph3 vertex discreteChange constant3" data-action="dec" /> -->
+					<!--<input type="button" value="+" class="graph3 vertex discreteChange constant3" data-action="inc" />	-->
+					<!-- <img src="images/arrow-down.gif" class="graph3 vertex discreteChange constant3" data-action="dec"/> -->
+					<!-- <img src="images/arrow-up.gif" class="graph3 vertex discreteChange constant3" data-action="inc"/> -->
+				</td>					
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>				
+				<td colspan="3">
+					<input type="button" class="graph3 vertex buttons plotButton" value="Plot"/>
+				</td>
+				<td colspan="4">
+					<input type="button" class="graph3 vertex buttons clearButton" value="Clear"/>
+				</td>				
+			</tr>
+		</tbody>
+		</table>
+  </div>
+</div>
+</div>
+<br/>
+<div id="footer">
+Copyright Singapore Polytechnic 2013</div>
+</div>
+</body>
+<script type="text/javascript"> 
+$(function () {
+	$('.userInputs').val('');
+	quadGraphs_init();	
+	$('.userInputs').keypad({showOn: 'focus'})
+					   .keypad('change', {showAnim: 'fadeIn', 
+						       showOptions: null, duration: 'fast'}); 							   
+});
+</script>
+</html>
