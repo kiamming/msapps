@@ -40,7 +40,7 @@ require.config({
 });
 
 require(['angular',
-         'fastclick',
+         //'fastclick',
          'jquery',
          'angular_ui_router',
          'angular_ui_bootstrap',
