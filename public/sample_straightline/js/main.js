@@ -3,12 +3,12 @@
 
 require.config({
     paths: {
-        angular: '../bower_components/angular/angular',
-        angular_ui_router: '../bower_components/angular/angular-ui-router',
+        angular: '../bower_components/angular/angular.min',
+        angular_ui_router: '../bower_components/angular/angular-ui-router.min',
         angular_ui_bootstrap: '../bower_components/angular/ui-bootstrap-tpls-0.6.0.min',
         jquery: '../bower_components/jquery/jquery-1.8.3.min',
-        flotJS: '../bower_components/flotFiles/jquery.flot',
-        fastclick: '../bower_components/fastclick/fastclick',
+        flotJS: '../bower_components/flotFiles/jquery.flot.min',
+        fastclick: '../bower_components/fastclick/fastclick.min',
         //sample_factory: 'services/sample_factory',
         sample_states: 'states/sample_states',
         sample_directive: 'directives/sampleDirective1'
