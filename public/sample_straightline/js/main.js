@@ -50,7 +50,6 @@ require(['jquery',
          'sample_directive',
          'flotJS',
          'jquery_keypad'],
-         function ($, angular, fastclick) {
+         function ($, angular) {
     angular.bootstrap(document, ['myApp']);
-    fastclick.attach(document.body);
 });

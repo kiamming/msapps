@@ -65,7 +65,8 @@ angular.module('myApp')
                                     $(':text').keypad({showOn: 'focus'})
                                         .keypad('change', {showAnim: 'fadeIn',
                                             showOptions: null,
-                                            duration: 'fast'})
+                                            duration: 'fast'});
+                                    FastClick.attach(document.body);
                                 });
                             }]
                     },
