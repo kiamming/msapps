@@ -50,11 +50,7 @@ require(['angular',
          'sample_directive',
          'flotJS',
          'jquery_keypad'],
-         function (angular, fastclick, $) {
+         function (angular, fastclick) {
     angular.bootstrap(document, ['myApp']);
-    fastclick.attach(document.body);
-    $(':text').keypad({showOn: 'focus'})
-              .keypad('change', {showAnim: 'fadeIn',
-                     showOptions: null,
-                     duration: 'fast'});
+    //fastclick.attach(document.body);
 });
