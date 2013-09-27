@@ -95,7 +95,7 @@ define(['app', 'jquery'], function (app, $) {
                         duration: 'fast'});
 
                 resetAll();
-                //FastClick.attach(document.body);
+                FastClick.attach(document.body);
                 ////// End of initialization code///////
 
                 // Utility functions
