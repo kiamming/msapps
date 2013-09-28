@@ -115,6 +115,9 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
 
                     // Comment the line below to focus the axes when a new graph is drawn
                     axes = plot.getAxes();
+
+                    // Show equation of straightline graph
+                    showEqnOfLine();
                 }
 
                 /*function resizeGraph() {
@@ -190,6 +193,50 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                     currentIntInput.val(INITIALINT);
                     replot();
                 }
+
+                /**
+                 * showEqnOfLine() considers the values of the gradient and intercepts and displays
+                 * the equation of the straight line graph in the window in a form that is natural.
+                 */
+                function showEqnOfLine() {
+                    var objCurrentLineMessageBox = $("#currentLineMessageBox");
+
+                    var yVar = "y ", gradVal, xVar = "x", sign12, interceptVal;
+
+                    gradVal = roundNumber(currentGrad, 2);
+
+                    if(gradVal == 0) {
+                        gradVal = xVar = "" ;
+                        sign12 = "";
+                    }
+                    else if(gradVal == 1) {
+                        gradVal = "";
+                        sign12 = " + ";
+                    }
+                    else {
+                        sign12 = " + ";
+                    }
+
+                    if(currentInt == 0) {
+                        sign12 = "";
+                        interceptVal = "";
+                    }
+                    else if(currentInt < 0) {
+                        sign12 = " - ";
+                        interceptVal = Math.abs(roundNumber(currentInt, 2));
+                    }
+                    else {
+                        interceptVal = roundNumber(currentInt, 2);
+                    }
+
+                    objCurrentLineMessageBox.html(
+                        "Equation of last drawn line:<br/>" +
+                        "<em>" + yVar + "</em>" + " = " +
+                        "<span style='font-weight: bold; color: blue'>" + gradVal + "</span>" +
+                        "<em>" + xVar + "</em>" + sign12 +
+                        "<span style='font-weight: bold; color: darkgreen'>" + interceptVal + "</span>");
+                }
+
 
                 /**
                  * roundNumber(num, dec) rounds a number to a maximum of 2 decimal places
