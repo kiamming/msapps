@@ -69,11 +69,6 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 plot = $.plot(placeholder, [dummy], default_flot_options);
                 axes = plot.getAxes();
 
-                /*$('#mainContainer').on("touchstart",
-                    function (e) {
-                        e.preventDefault();
-                    });*/
-
                 $('[name="radioStates"]').on('click', changeView);
 
                 $('#decreaseGrad').on('click', decreaseGrad);

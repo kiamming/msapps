@@ -10,7 +10,6 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 ////// Initialization code///////
                 var placeholder;
                 var graphs = [[]];
-                var colorPalette = ['#FF0000'];
                 var plot;
                 var axes;
                 var flot_options;
@@ -19,10 +18,15 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 var xyMin = -20;
                 var xyMax = 20;
 
-                var currentGradInput = $('#currentGrad');
-                var currentIntInput = $('#currentInt');
-                var currentGrad = parseFloat(currentGradInput.val());
-                var currentInt = parseFloat(currentIntInput.val());
+                var numLinesDrawn = 0; // number of lines now on canvas
+                var MAXNUMLINES = 4; // maximum number of lines allowed
+                var COLORS = ["red", "blue", "green", "indigo"]; // colors used for drawing lines
+
+                var x1 = $('#x1');
+                var y1 = $('#y1');
+                var x2 = $('#x2');
+                var y2 = $('#y2');
+                var messageBoxes = $("[name='messageBoxes']");
 
                 placeholder = $('#placeholder');
 
@@ -64,19 +68,8 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 plot = $.plot(placeholder, [dummy], default_flot_options);
                 axes = plot.getAxes();
 
-                $('#mainContainer').on("touchstart",
-                    function (e) {
-                        e.preventDefault();
-                    });
-
-                $('[name="radioStates"]').on('click', changeView);
-
-                $('#decreaseGrad').on('click', decreaseGrad);
-                $('#increaseGrad').on('click', increaseGrad);
-                $('#decreaseInt').on('click', decreaseInt);
-                $('#increaseInt').on('click', increaseInt);
                 $('#resetAll').on('click', resetAll);
-                $('.redrawBtns').on('click', replot);
+                $('#drawLine').on('click', ensureValidInputs);
 
                 $(':text').keypad({showOn: 'button',
                     buttonImageOnly: true,
@@ -84,22 +77,25 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                     .keypad('change', {showAnim: 'fadeIn',
                         showOptions: null,
                         duration: 'fast'});
-                resetAll();
+                //resetAll();
                 ////// End of initialization code///////
 
                 // Utility functions
 
-                function replot() {
+                function replot(gradNintercept, currentColor, verticalLine) {
                     var thisGraph = [];
-                    ensureValidInputs();
 
-                    thisGraph.push([xyMin, currentGrad*xyMin+currentInt]);
-                    thisGraph.push([xyMax, currentGrad*xyMax+currentInt]);
+                    if(!verticalLine) {
+                        thisGraph.push([xyMin, gradNintercept.grad*xyMin+gradNintercept.int]);
+                        thisGraph.push([xyMax, gradNintercept.grad*xyMax+gradNintercept.int]);
+                    }
+                    else {
+                        var xCoord = gradNintercept;
+                        thisGraph.push([xCoord, xyMin]);
+                        thisGraph.push([xCoord, xyMax]);
+                    }
 
-                    if(OVERRIDEPREVIOUS == 1)
-                        graphs = [[]];
-
-                    graphs.push({data: thisGraph, color: colorPalette[0]});
+                    graphs.push({data: thisGraph, color: currentColor});
                     var current_flot_options = $.extend(true, {}, flot_options);
                     current_flot_options.xaxis.min = axes.xaxis.min.toFixed(2);
                     current_flot_options.xaxis.max = axes.xaxis.max.toFixed(2);
@@ -110,128 +106,130 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
 
                     // Comment the line below to focus the axes when a new graph is drawn
                     axes = plot.getAxes();
-
-                    // Show equation of straightline graph
-                    showEqnOfLine();
-                }
-
-                /*function resizeGraph() {
-                 placeholder.height(placeholder.width());
-                 }*/
-
-                function changeView() {
-                    var viewRadioButtons = $('[name="radioStates"]');
-                    for(var i = 0; i < viewRadioButtons.length; i++) {
-                        if(viewRadioButtons.eq(i).hasClass('active')) {
-                            OVERRIDEPREVIOUS = viewRadioButtons.eq(i).val();
-                            break;
-                        }
-                    }
-                }
-
-                function decreaseGrad() {
-                    ensureValidInputs();
-                    var temp = parseFloat(currentGradInput.val());
-                    temp -= STEP;
-                    currentGradInput.val(roundNumber(temp, 2));
-                    replot();
-                }
-
-                function increaseGrad() {
-                    ensureValidInputs();
-                    var temp = parseFloat(currentGradInput.val());
-                    temp += STEP;
-                    currentGradInput.val(roundNumber(temp, 2));
-                    replot();
-                }
-
-                function decreaseInt() {
-                    ensureValidInputs();
-                    var temp = parseFloat(currentIntInput.val());
-                    temp -= 5*STEP;
-                    currentIntInput.val(roundNumber(temp, 2));
-                    replot();
-                }
-
-                function increaseInt() {
-                    ensureValidInputs();
-                    var temp = parseFloat(currentIntInput.val());
-                    temp += 5*STEP;
-                    currentIntInput.val(roundNumber(temp, 2));
-                    replot();
                 }
 
                 function ensureValidInputs() {
-                    var tempGrad = parseFloat(currentGradInput.val());
-                    var tempInt = parseFloat(currentIntInput.val());
+                    // Getting references to the message box etc.
+                    var currentMessageBox = $("#messageBox" + (numLinesDrawn+1));
+                    var coords = new Object();
+                    coords.x1 = parseFloat(x1.val());
+                    coords.y1 = parseFloat(y1.val());
+                    coords.x2 = parseFloat(x2.val());
+                    coords.y2 = parseFloat(y2.val());
 
-                    if(isNaN(tempGrad)) {
-                        tempGrad = currentGrad;
-                        currentGradInput.val(currentGrad);
+                    // Keep track of whether the inputs are valid
+                    var allInputsValid = true;
+
+                    if(isNaN(coords.x1)) {
+                        x1.val('');
+                        allInputsValid = false;
                     }
-                    else{
-                        currentGrad = tempGrad;
+                    if(isNaN(coords.y1)) {
+                        y1.val('');
+                        allInputsValid = false;
+                    }
+                    if(isNaN(coords.x2)) {
+                        x2.val('');
+                        allInputsValid = false;
+                    }
+                    if(isNaN(coords.y2)) {
+                        y2.val('');
+                        allInputsValid = false;
                     }
 
-                    if(isNaN(tempInt)) {
-                        tempInt = currentInt;
-                        currentIntInput.val(currentInt);
+                    if(coords.x1 == coords.x2 && coords.y1 == coords.y2) {
+                        currentMessageBox.text("Enter 2 distinct points");
                     }
-                    else{
-                        currentInt = tempInt;
+                    else if(allInputsValid) {
+                        if(numLinesDrawn < MAXNUMLINES) {
+                            var gradNintercept = calculateGradandIntercept(coords);
+
+                            // displaying the equation of the straight line graph in the window in a form that is natural.
+                            var statement0, statement1, sign12, statement2;
+                            if(gradNintercept.grad === gradNintercept.grad) {
+                                replot(gradNintercept, COLORS[numLinesDrawn], false);
+
+                                statement0 = "y = ";
+
+                                // Dealing with different forms of gradient
+                                if(gradNintercept.grad == 0) {
+                                    statement1 = "" ;
+                                    sign12 = "";
+                                }
+                                else if(gradNintercept.grad == 1) {
+                                    statement1 = "x";
+                                    sign12 = " + ";
+                                }
+                                else if(gradNintercept.grad == -1) {
+                                    statement1 = "-x";
+                                    sign12 = " + ";
+                                }
+                                else {
+                                    statement1 = roundNumber(gradNintercept.grad, 2) + "x";
+                                    sign12 = " + ";
+                                }
+
+                                // Dealing with different forms of intercepts
+                                if(gradNintercept.int == 0) {
+                                    sign12 = "";
+                                    statement2 = "";
+                                }
+                                else if(gradNintercept.int < 0) {
+                                    sign12 = " - ";
+                                    statement2 = Math.abs(roundNumber(gradNintercept.int, 2));
+                                }
+                                else {
+                                    statement2 = roundNumber(gradNintercept.int, 2);
+                                }
+                            }
+                            else{
+                                replot(coords.x1, COLORS[numLinesDrawn], true);
+
+                                statement0 = "x = " + roundNumber(coords.x1, 2);
+                                statement1 = "   ";
+                                sign12 = "";
+                                statement2 = "(Gradient undefined)";
+                            }
+
+                            currentMessageBox.text(statement0 + statement1 + sign12 + statement2);
+                            numLinesDrawn++;
+                        }
+                        else currentMessageBox.html("Max number of lines = " + MAXNUMLINES +
+                            "<br/>Please clear canvas.");
+                    }
+                    else {
+                        currentMessageBox.text("Enter only numeric values.");
                     }
                 }
 
                 function resetAll() {
                     graphs = [[]];
-                    currentGradInput.val(INITIALGRAD);
-                    currentIntInput.val(INITIALINT);
-                    replot();
+                    numLinesDrawn = 0;
+                    messageBoxes.each(function() {
+                        $(this).text("");
+                    });
+                    var dummyGradNIntercept = new Object();
+                    dummyGradNIntercept.grad = 0;
+                    dummyGradNIntercept.int = 100;
+                    replot(dummyGradNIntercept, COLORS[0]);
                 }
 
                 /**
-                 * showEqnOfLine() considers the values of the gradient and intercepts and displays
-                 * the equation of the straight line graph in the window in a form that is natural.
+                 * calculateGradandIntercept(coords) calculates the gradient and intercept based on 2 points.
                  */
-                function showEqnOfLine() {
-                    var objCurrentLineMessageBox = $("#currentLineMessageBox");
+                function calculateGradandIntercept(coords) {
+                    var gradNintercept = new Object();
 
-                    var yVar = "y ", gradVal, xVar = "x", sign12, interceptVal;
-
-                    gradVal = roundNumber(currentGrad, 2);
-
-                    if(gradVal == 0) {
-                        gradVal = xVar = "" ;
-                        sign12 = "";
-                    }
-                    else if(gradVal == 1) {
-                        gradVal = "";
-                        sign12 = " + ";
+                    if(coords.x1 == coords.x2) {
+                        gradNintercept.grad = NaN;
+                        gradNintercept.int = NaN;
                     }
                     else {
-                        sign12 = " + ";
+                        gradNintercept.grad = (coords.y2 - coords.y1) / (coords.x2 - coords.x1);
+                        gradNintercept.int = coords.y1 - gradNintercept.grad*coords.x1;
                     }
-
-                    if(currentInt == 0) {
-                        sign12 = "";
-                        interceptVal = "";
-                    }
-                    else if(currentInt < 0) {
-                        sign12 = " - ";
-                        interceptVal = Math.abs(roundNumber(currentInt, 2));
-                    }
-                    else {
-                        interceptVal = roundNumber(currentInt, 2);
-                    }
-
-                    objCurrentLineMessageBox.html(
-                        "Equation of last drawn line:<br/>" +
-                            "<em>" + yVar + "</em>" + " = " +
-                            "<span style='font-weight: bold; color: blue'>" + gradVal + "</span>" +
-                            "<em>" + xVar + "</em>" + sign12 +
-                            "<span style='font-weight: bold; color: darkgreen'>" + interceptVal + "</span>");
+                    return gradNintercept;
                 }
-
 
                 /**
                  * roundNumber(num, dec) rounds a number to a maximum of 2 decimal places
