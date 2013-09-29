@@ -42,6 +42,10 @@ require(['angular',
          function (angular) {
             angular.bootstrap(document, ['myApp']);
             require(['jquery']);
-            var fastclick = require(['fastclick']);
-            fastclick.attach(document.body);
+
+            require(['fastclick'], function(fastclick) {
+                fastclick.attach(document.body);
+            });
 });
+
+
