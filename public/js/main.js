@@ -24,9 +24,6 @@ require.config({
         angular_ui_bootstrap: {
             deps: ['angular']
         },
-        /*sample_factory: {
-            deps: ['angular']
-        },*/
         sample_states: {
             deps: ['angular', 'app']
         },
@@ -39,15 +36,12 @@ require.config({
     }
 });
 
-require(['jquery',
-         'angular',
-         'fastclick',
-         'angular_ui_router',
-         'angular_ui_bootstrap',
+require(['angular',
          'app',
-         //'sample_factory',
          'sample_states'],
-         function ($, angular, fastclick) {
+         function (angular) {
             angular.bootstrap(document, ['myApp']);
+            require(['jquery']);
+            var fastclick = require(['fastclick']);
             fastclick.attach(document.body);
 });
