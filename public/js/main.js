@@ -11,8 +11,8 @@ require.config({
         flotJS: '../bower_components/flotFiles/jquery.flot.min',
         fastclick: '../bower_components/fastclick/fastclick.min',
         //sample_factory: 'services/sample_factory',
-        sample_states: 'states/sample_states',
-        visualizeGradIntDirective: 'directives/visualizeGradIntDirective'
+        sample_states: 'states/sample_states.min',
+        visualizeGradIntDirective: 'directives/visualizeGradIntDirective.min'
     },
     shim: {
         angular: {
@@ -41,9 +41,7 @@ require(['angular',
          'sample_states'],
          function (angular) {
             angular.bootstrap(document, ['myApp']);
-            require(['jquery']);
-
-            require(['fastclick'], function(fastclick) {
+            require(['jquery', 'fastclick'], function(fastclick) {
                 fastclick.attach(document.body);
             });
 });
