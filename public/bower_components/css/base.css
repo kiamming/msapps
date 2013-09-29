@@ -14,12 +14,10 @@
     cursor: pointer;
 }
 
-/*@media all and (max-width: 480px)  {
-    .half {
-        float: left !important;
-        width: 50% !important;
-    }
-}*/
+.nodisplay {
+    display: none;
+    background-color: blue;
+}
 
 .slide-left.ng-enter,
 .slide-left.ng-leave,

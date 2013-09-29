@@ -32,9 +32,19 @@
         <p ui-view="hint" class="navbar-text pull-right" style="color: red"></p>
     </div>
 </div>
-<div class="hero-unit">
+<!--<div class="hero-unit" style="margin-top:60px" ng-class="{nodisplay: !$state.includes('home')}">
     <div class="row">
         Test
+    </div>
+</div>-->
+<div class="container" style="margin-top:60px" ng-class="{nodisplay: !$state.includes('home')}">
+    <div>
+        <p class="lead">Welcome to Maths and Science Apps</p>
+        <p>Use the menu below to navigate.</p>
+        <div class="list-group">
+            <a ui-sref="visualizeGradientIntercept" class="list-group-item">Visualize Gradient and Intercept of a Straight Line Graph</a>
+            <a ui-sref="pointsToGradientIntercept" class="list-group-item">Plot a line from two points</a>
+        </div>
     </div>
 </div>
 <!-- Here is the main ui-view (unnamed) and will be populate by its immediate children's templates
