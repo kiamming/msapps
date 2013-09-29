@@ -2,7 +2,7 @@
 'use strict';
 
 define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
-    app.compileProvider.directive('visualizegradintdirective', function () {
+    app.compileProvider.directive('pointstogradintdirective', function () {
         return {
             restrict: 'A',
             link: function(scope, element, attrs, controller) {
@@ -16,13 +16,8 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 var flot_options;
                 var default_flot_options;
                 var dummy;
-                var xyMin = -5;
-                var xyMax = 5;
-
-                var OVERRIDEPREVIOUS = 1; // 1: each new graph to override the previous; 0: old graphs are not erased
-                var STEP = 0.1; // Increase/decrease gradient by this amount. Intercept is increased/decreased via a constant multiplier.
-                var INITIALGRAD = 0;
-                var INITIALINT = 1;
+                var xyMin = -20;
+                var xyMax = 20;
 
                 var currentGradInput = $('#currentGrad');
                 var currentIntInput = $('#currentInt');
@@ -69,10 +64,10 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 plot = $.plot(placeholder, [dummy], default_flot_options);
                 axes = plot.getAxes();
 
-                /*$('#mainContainer').on("touchstart",
+                $('#mainContainer').on("touchstart",
                     function (e) {
                         e.preventDefault();
-                    });*/
+                    });
 
                 $('[name="radioStates"]').on('click', changeView);
 
@@ -84,11 +79,11 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 $('.redrawBtns').on('click', replot);
 
                 $(':text').keypad({showOn: 'button',
-                                   buttonImageOnly: true,
-                                   buttonImage: '../img/keypad.png'})
-                          .keypad('change', {showAnim: 'fadeIn',
-                                             showOptions: null,
-                                             duration: 'fast'});
+                    buttonImageOnly: true,
+                    buttonImage: '../img/keypad.png'})
+                    .keypad('change', {showAnim: 'fadeIn',
+                        showOptions: null,
+                        duration: 'fast'});
                 resetAll();
                 ////// End of initialization code///////
 
@@ -121,8 +116,8 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
                 }
 
                 /*function resizeGraph() {
-                    placeholder.height(placeholder.width());
-                }*/
+                 placeholder.height(placeholder.width());
+                 }*/
 
                 function changeView() {
                     var viewRadioButtons = $('[name="radioStates"]');
@@ -231,10 +226,10 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
 
                     objCurrentLineMessageBox.html(
                         "Equation of last drawn line:<br/>" +
-                        "<em>" + yVar + "</em>" + " = " +
-                        "<span style='font-weight: bold; color: blue'>" + gradVal + "</span>" +
-                        "<em>" + xVar + "</em>" + sign12 +
-                        "<span style='font-weight: bold; color: darkgreen'>" + interceptVal + "</span>");
+                            "<em>" + yVar + "</em>" + " = " +
+                            "<span style='font-weight: bold; color: blue'>" + gradVal + "</span>" +
+                            "<em>" + xVar + "</em>" + sign12 +
+                            "<span style='font-weight: bold; color: darkgreen'>" + interceptVal + "</span>");
                 }
 
 

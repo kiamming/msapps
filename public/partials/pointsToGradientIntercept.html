@@ -1,10 +1,40 @@
-<div pointtogradintdirective id="mainContainer" style="width:860px; margin: 0 auto">
-    <div class="panel panel-warning" style="margin-top: 30px">
-        <div class="panel-heading">
-            Under construction
-        </div>
-        <div class="panel-body">
-            <p>Thank you for being patient!</p>
+<div pointstogradintdirective id="mainContainer" style="width:860px; margin: 0 auto">
+    <div id="placeholder" style="height:560px;width:560px;float:left;">      <!--class="col-lg-6 col-sm-6 col-xs-6"-->
+    </div>
+    <div id="io" style="height:560px;width:280px;float:left;font-size: 120%;"> <!--class="col-lg-3 col-sm-3 col-xs-3"-->
+        <div class="well">
+            <form>
+                Input the coordinates of any two points of your <span style="font-weight: bold; text-decoration: underline">straight line graph</span>:
+                <br/><br/>
+                <div style="float:left; color: #993300">
+                    <span style="font-weight: bold">First point:</span><br/>
+                    <span style="float:left">x<span class="subscript">1</span>: </span><input type="text" class="form-control" id="x1" style="width:50px; float: left"/>
+                    <p style="clear: both;"></p>
+                    <span style="float:left">y<span class="subscript">1</span>: </span><input type="text" class="form-control" id="y1" style="width:50px; float: left"/>
+                </div>
+                <div style="width:20px; float:left">&nbsp</div>
+                <div style="float:left; color: #CC33FF">
+                    <span style="font-weight: bold">Second point:</span><br/>
+                    <span style="float:left">x<span class="subscript">2</span>: </span><input type="text" class="form-control" id="x2" style="width:50px; float: left"/>
+                    <p style="clear: both;"></p>
+                    <span style="float:left">y<span class="subscript">2</span>: </span><input type="text" class="form-control" id="y2" style="width:50px; float: left"/>
+                </div>
+                <p style="clear: both;"></p>
+                <div style="padding-left: 40px">
+                    <button id="drawLine" type="button" class="btn btn-primary" style="width:150px">
+                        Draw line
+                    </button>
+                    <br/><br/>
+                    <button id="resetAll" type="button" class="btn btn-warning" style="width:150px">
+                        Reset all
+                    </button>
+                </div>
+            </form>
+            <div id="messageBox1" name="messageBoxes" style="color:red"></div>
+            <div id="messageBox2" name="messageBoxes" style="color:blue"></div>
+            <div id="messageBox3" name="messageBoxes" style="color:green"></div>
+            <div id="messageBox4" name="messageBoxes" style="color:indigo"></div>
+            <div id="messageBox5" name="messageBoxes" style="color:black"></div>
         </div>
     </div>
 </div>

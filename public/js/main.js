@@ -12,7 +12,8 @@ require.config({
         fastclick: '../bower_components/fastclick/fastclick.min',
         //sample_factory: 'services/sample_factory',
         sample_states: 'states/sample_states',
-        visualizeGradIntDirective: 'directives/visualizeGradIntDirective'
+        visualizeGradIntDirective: 'directives/visualizeGradIntDirective',
+        pointsToGradIntDirective: 'directives/pointsToGradIntDirective'
     },
     shim: {
         angular: {

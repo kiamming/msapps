@@ -57,8 +57,7 @@ angular.module('myApp')
                             });
                         });
                         return deferred.promise;
-                    }]
-                ,
+                    }],
 
                 views: {
                     // So this one is targeting the unnamed view within the parent state's template.
@@ -86,6 +85,17 @@ angular.module('myApp')
 
                   // Use a url of "/pointsToGradientIntercept" to set a state as "visualizeGradientIntercept".
                   url: '/pointsToGradientIntercept',
+
+                  resolve:
+                    [function($q, $rootScope) {
+                        var deferred = $q.defer();
+                        require(['pointsToGradIntDirective'], function() {
+                            $rootScope.$apply(function(){
+                                deferred.resolve();
+                            });
+                        });
+                        return deferred.promise;
+                    }],
 
                   views: {
                       // So this one is targeting the unnamed view within the parent state's template.

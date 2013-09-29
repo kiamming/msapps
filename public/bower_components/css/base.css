@@ -41,6 +41,13 @@
     line-height: 30px;
 }
 
+/*Possible to transfer to another css file that is loaded after DOM is loaded*/
+.subscript {
+    position: relative;
+    top: 0.4em;
+    font-size: 0.6em;
+}
+
 .slide-left.ng-enter,
 .slide-left.ng-leave,
 .slide-right.ng-enter,
