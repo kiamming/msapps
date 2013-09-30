@@ -10,10 +10,10 @@ app.configure(function () {
     app.use(express.compress());
     app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
     app.use(express.bodyParser());
-    //app.use(express.static(path.join(__dirname, 'public/')));
+    app.use(express.static(path.join(__dirname, 'public/')));
 });
 
-var file = new static.Server('./public', { cache: 7200 });
+/*var file = new static.Server('./public', { cache: 7200 });
 
 http.createServer(function(request, response) {
     request.addListener('end', function () {
@@ -22,8 +22,8 @@ http.createServer(function(request, response) {
     }).resume();
 }).listen(app.get('port'), function (){
     console.log("Express server listening on port " + app.get('port'));
-});
-
-/*http.createServer(app).listen(app.get('port'), function () {
-    console.log("Express server listening on port " + app.get('port'));
 });*/
+
+http.createServer(app).listen(app.get('port'), function () {
+    console.log("Express server listening on port " + app.get('port'));
+});
