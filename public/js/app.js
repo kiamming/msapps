@@ -17,6 +17,9 @@ define(['angular', 'angular_ui_bootstrap', 'angular_ui_router'], function (angul
                 // to active whenever 'contacts.list' or one of its decendents is active.
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
+                // ng-model "nothome" is used to hide the main contents of the home page
+                // when the current state is not the home state.
+                // $state.current.name is not used as it leads to flickering when loading.
                 $rootScope.nothome = false;
             }]);
 

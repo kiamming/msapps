@@ -129,7 +129,12 @@ angular.module('myApp')
 
           .state('about', {
             url: '/about',
-            templateUrl: '../partials/about.html'
+            templateUrl: '../partials/about.html',
+            controller: ['$scope', '$rootScope',
+                function (  $scope,   $rootScope) {
+                    //$scope.behavior = 'override';
+                    $rootScope.nothome = true;
+                }]
             // Showing off how you could return a promise from templateProvider
             /*templateProvider: ['$timeout',
               function (        $timeout) {
