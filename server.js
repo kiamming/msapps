@@ -4,6 +4,7 @@ var express = require('express'),
     static = require('node-static');
 
 var app = express();
+// Cache for one day
 var oneDay = 86400000;
 
 app.configure(function () {
@@ -11,19 +12,10 @@ app.configure(function () {
     app.use(express.compress());
     app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
     app.use(express.bodyParser());
-    app.use(express.static(path.join(__dirname, 'public/'), { maxAge: oneDay }));
+    // Uncomment the last section of the line below to enable caching.
+    // Disabling caching helps in production
+    app.use(express.static(path.join(__dirname, 'public/'))); //, { maxAge: oneDay }));
 });
-
-/*var file = new static.Server('./public', { cache: 7200 });
-
-http.createServer(function(request, response) {
-    request.addListener('end', function () {
-        file.serve(request, response);
-
-    }).resume();
-}).listen(app.get('port'), function (){
-    console.log("Express server listening on port " + app.get('port'));
-});*/
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log("Express server listening on port " + app.get('port'));
