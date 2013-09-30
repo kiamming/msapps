@@ -4,13 +4,14 @@ var express = require('express'),
     static = require('node-static');
 
 var app = express();
+var oneDay = 86400000;
 
 app.configure(function () {
     app.set('port', process.env.PORT || 3000);
     app.use(express.compress());
     app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
     app.use(express.bodyParser());
-    app.use(express.static(path.join(__dirname, 'public/')));
+    app.use(express.static(path.join(__dirname, 'public/'), { maxAge: oneDay }));
 });
 
 /*var file = new static.Server('./public', { cache: 7200 });
