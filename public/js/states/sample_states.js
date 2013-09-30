@@ -36,7 +36,13 @@ angular.module('myApp')
             // Use a url of "/" to set a state as the "index".
             url: "/",
 
-            templateUrl: '../partials/home.html'
+            //templateUrl: '../partials/home.html'
+
+            controller: ['$scope', '$rootScope',
+                function (  $scope,   $rootScope) {
+                    $rootScope.nothome = false;
+                    //$scope.behavior = 'override';
+                }]
           })
 
             //////////////////////////////////////////////////////////////
@@ -63,9 +69,10 @@ angular.module('myApp')
                     // So this one is targeting the unnamed view within the parent state's template.
                     '': {
                         templateUrl: '../partials/visualizeGradientIntercept.html',
-                        controller: ['$scope', '$state',
-                            function ($scope, $state) {
+                        controller: ['$scope', '$rootScope',
+                            function ($scope, $rootScope) {
                                 $scope.behavior = 'override';
+                                $rootScope.nothome = true;
                             }]
                     },
 
@@ -101,9 +108,10 @@ angular.module('myApp')
                       // So this one is targeting the unnamed view within the parent state's template.
                       '': {
                           templateUrl: '../partials/pointsToGradientIntercept.html',
-                          controller: ['$scope', '$state',
-                              function (  $scope,   $state) {
+                          controller: ['$scope', '$rootScope',
+                              function (  $scope,   $rootScope) {
                                   //$scope.behavior = 'override';
+                                  $rootScope.nothome = true;
                               }]
                       },
 

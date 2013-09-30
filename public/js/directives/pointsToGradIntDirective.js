@@ -73,7 +73,7 @@ define(['app', 'jquery', 'flotJS', 'jquery_keypad'], function (app, $) {
 
                 $(':text').keypad({showOn: 'button',
                     buttonImageOnly: true,
-                    buttonImage: '../img/keypad.png'})
+                    buttonImage: '../img/keypad.jpg'})
                     .keypad('change', {showAnim: 'fadeIn',
                         showOptions: null,
                         duration: 'fast'});

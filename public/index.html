@@ -31,6 +31,20 @@
         <p ui-view="hint" class="navbar-text pull-right" style="color: red"></p>
     </div>
 </div>
+
+<div style="margin-top:60px" ng-class="{nodisplay: nothome}">
+    <header class="hero-unit col-md-12">
+        <h1>Maths & Science Apps</h1>
+    </header>
+    <div class="container">
+        <p>Use the menu below to navigate.</p>
+        <div class="list-group">
+            <a ui-sref="visualizeGradientIntercept" class="list-group-item">Visualize Gradient and Intercept of a Straight Line Graph</a>
+            <a ui-sref="pointsToGradientIntercept" class="list-group-item">Plot a line from two points</a>
+        </div>
+    </div>
+</div>
+
 <!-- Here is the main ui-view (unnamed) and will be populate by its immediate children's templates
      unless otherwise explicitly named views are targeted. It's also employing ng-animate. -->
 <div ui-view  style="margin-top:60px" ng-animate="{enter:'fade-enter'}"></div>

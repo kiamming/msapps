@@ -17,6 +17,7 @@ define(['angular', 'angular_ui_bootstrap', 'angular_ui_router'], function (angul
                 // to active whenever 'contacts.list' or one of its decendents is active.
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
+                $rootScope.nothome = false;
             }]);
 
     return app;
