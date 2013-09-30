@@ -13,11 +13,12 @@ app.configure(function () {
     //app.use(express.static(path.join(__dirname, 'public/')));
 });
 
-var file = new static.Server('./public');
+var file = new static.Server('./public', { cache: 7200 });
 
 http.createServer(function(request, response) {
     request.addListener('end', function () {
         file.serve(request, response);
+
     }).resume();
 }).listen(app.get('port'), function (){
     console.log("Express server listening on port " + app.get('port'));
