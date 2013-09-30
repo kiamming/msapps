@@ -14,7 +14,7 @@ app.configure(function () {
     app.use(express.bodyParser());
     // Uncomment the last section of the line below to enable caching.
     // Disabling caching helps in production
-    app.use(express.static(path.join(__dirname, 'public/'))); //, { maxAge: oneDay }));
+    app.use(express.static(path.join(__dirname, 'public/')), { maxAge: oneDay });
 });
 
 http.createServer(app).listen(app.get('port'), function () {
